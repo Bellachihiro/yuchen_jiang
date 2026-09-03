@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yuchen Jiang 姜雨辰</title>
+<meta name="ext-resource-dependency" content="assets/water.jpg" data-resource-id="waterImg" />
+<meta name="ext-resource-dependency" content="assets/lily.jpg" data-resource-id="lilyImg" />
+<link rel="stylesheet" href="ds/styles.css">
+<style>
+:root{--frost:0.44;--color-bg:transparent;--color-surface:#dcecee;--color-text:#0a2429;--color-accent:#0b4d57;--color-accent-700:#083a43;--color-accent-600:#0b4d57;--color-neutral-600:#2b4b51;--color-neutral-700:#1f4046;--color-divider:rgba(10,36,41,0.28);}
+body{margin:0;background:transparent;color:#0a2429;font-weight:500;background-image:url('assets/lily.jpg');background-size:cover;background-position:center;background-attachment:fixed;text-shadow:0 1px 0 rgba(255,255,255,0.5);}
+@keyframes om-veil{from{opacity:0}to{opacity:1}}
+@keyframes om-frost{from{background-color:rgba(255,255,255,0);backdrop-filter:blur(0px)}to{background-color:rgba(255,255,255,var(--frost));backdrop-filter:blur(3px)}}
+@keyframes om-rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes om-splash-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:linear-gradient(180deg, rgba(233,245,246,0.22), rgba(228,243,245,0.28));opacity:0;}
+body.entered{background-image:url('assets/lily.jpg')}
+body.entered::before{opacity:1}
+body.entered.intro::before{animation:om-veil 520ms cubic-bezier(.22,.61,.36,1) 160ms both;}
+.page{position:relative;z-index:1;background:rgba(255,255,255,var(--frost));backdrop-filter:blur(3px);}
+body:not(.entered) .page{visibility:hidden}
+body.entered.intro .page{animation:om-frost 520ms cubic-bezier(.22,.61,.36,1) 280ms both;}
+body.entered.intro .page>*{animation:om-rise 420ms cubic-bezier(.22,.61,.36,1) both;}
+body.entered.intro .page>*:nth-child(1){animation-delay:440ms}body.entered.intro .page>*:nth-child(2){animation-delay:500ms}body.entered.intro .page>*:nth-child(3){animation-delay:560ms}body.entered.intro .page>*:nth-child(4){animation-delay:620ms}body.entered.intro .page>*:nth-child(5){animation-delay:680ms}
+.text-muted{color:rgba(10,36,41,0.82) !important}
+h1,h2,h3,h4,h6{color:#083a43;text-shadow:0 1px 2px rgba(255,255,255,0.6);font-weight:600}
+.page p,.page li,.page div,.page span,.page a{font-weight:500}
+.page .text-muted{font-weight:500}
+.page h6{font-weight:600;letter-spacing:0.1em}
+.card{background:rgba(255,255,255,0.5);backdrop-filter:blur(8px);border-color:rgba(11,77,87,0.28)}
+a{text-decoration:none}a:hover{color:var(--color-accent-600)}
+html[lang="zh"] body{font-family:"Lora","Songti SC","Noto Serif SC",serif}
+html[lang="ja"] body{font-family:"Lora","Yu Mincho","Hiragino Mincho ProN","Noto Serif JP",serif}
+#splash{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;transition:opacity 480ms cubic-bezier(.22,.61,.36,1);}
+#splash.leaving{opacity:0;pointer-events:none}
+#splash .panel{display:flex;flex-direction:column;align-items:center;gap:var(--space-4);padding:var(--space-8) calc(var(--space-8) * 1.4);background:rgba(255,255,255,0.24);backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,0.4);border-radius:var(--radius-md);animation:om-splash-in 900ms cubic-bezier(.22,.61,.36,1) both}
+#splash .mark{font-family:var(--font-heading);font-size:150px;line-height:1;letter-spacing:0.06em;color:#083a43;text-shadow:0 2px 8px rgba(255,255,255,0.65)}
+#splash .rule{width:120px;height:1px;background:rgba(8,58,67,0.5)}
+#splash .enter{background:rgba(255,255,255,0.62);backdrop-filter:blur(5px);font-family:var(--font-heading);font-size:15px;padding:var(--space-2) var(--space-4)}
+#splash .enter:hover{background:rgba(255,255,255,0.8)}
+@media (max-width:700px){#splash .mark{font-size:96px}}
+@media (prefers-reduced-motion:reduce){.page,.page>*,body::before,#splash .panel{animation:none !important}}
+</style>
+<template id="__bundler_thumbnail" data-bg-color="#4b8b93">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#4b8b93"/>
+    <rect x="90" y="150" width="1020" height="6" fill="#eaf5f6"/>
+    <text x="600" y="450" text-anchor="middle" font-family="Georgia,serif" font-size="220" fill="#eaf5f6">YJ</text>
+    <rect x="90" y="640" width="1020" height="3" fill="#eaf5f6" opacity="0.7"/>
+  </svg>
+</template>
+</head>
+<body>
+<div id="splash">
+  <div class="panel">
+    <div class="mark">YJ</div>
+    <div class="rule"></div>
+    <button class="btn btn-primary enter" type="button" id="enterBtn">Start exploring</button>
+  </div>
+</div>
+
+<div id="app"></div>
+<script>
+
+var DATA = {
+  en: {
+    dir: {profile:"Profile", education:"Education", experience:"Experience", projects:"Projects"},
+    name:"Yuchen Jiang", alt:"", kicker:"Personal Record", langLabel:"Language",
+    meta:["MA candidate, International Law · Waseda University","bellachenj714@gmail.com"],
+    back:"← Yuchen Jiang",
+    profile:{
+      h:"Professional Profile", lead:"Interdisciplinary training in law, information management and international research.",
+      paras:[
+        "A master's student at Waseda University with interdisciplinary training in law, information management, and international research. Experienced in legal documentation review, policy research, and analytical work through internships at the Supreme People's Court of the PRC and the International Finance Corporation (IFC) of the World Bank Group.",
+        "Research interest: how sea-level rise driven by climate change affects the baseline provisions of the United Nations Convention on the Law of the Sea (UNCLOS)."
+      ],
+      langH:"Languages",
+      langs:[["Chinese","Native — proficient in Simplified, fluent in written Traditional"],["English","Professional proficiency — primary working language at IFC"],["Japanese","Elementary proficiency — studying in Tokyo"]],
+      skillsH:"Skills", skills:["Legal documentation review","Policy &amp; regulatory research","International law · Law of the sea","Data analysis with RStudio","Data labeling &amp; categorization"],
+      nowH:"Now", now:"Reading for a master's in the law of the sea in Tokyo, and writing on the effect of climate-driven sea-level rise on the baseline provisions of UNCLOS.",
+      contactH:"Contact", contact:["bellachenj714@gmail.com","+81 080 6173 6918","+86 185 1968 5700"], cta:"",
+      cards:[
+        ["01 · Education","Waseda, CUPL, Doshisha","Degrees, exchange terms and scholarships, 2020 to present.","education"],
+        ["02 · Experience","Supreme People's Court, IFC","Legal review in Beijing, analytical work in Washington D.C.","experience"],
+        ["03 · Projects","Legal-tech platform, NUS program","Academic programs and a national innovation project.","projects"]
+      ]
+    },
+    education:{
+      kicker:"Section One · Education", title:"Education Background", sub:"",
+      items:[
+        {date:"SEP 2025 — PRESENT", place:"Tokyo, Japan", org:"Waseda University", role:"Master, Graduate School of International Culture and Communication Studies (GSICCS)", body:"Specialized in international law (law of the sea) and international relations. Awarded the Japanese Government (MEXT) Scholarship for academic excellence."},
+        {date:"SEP 2020 — JUL 2025", place:"Beijing, China", org:"China University of Political Science and Law", role:"Bachelor, double degree: Information Management and Information System &amp; Law", body:"Recipient of the Academic Merit Scholarship for four consecutive years. Bridging legal reasoning with data management expertise to support digital transformation and legal-tech initiatives."},
+        {date:"MAR 2023 — AUG 2023", place:"Kyoto, Japan", org:"Doshisha University", role:"Exchange student, Law", body:"Received an academic recommendation from Professor Kazuhiko Fuchikawa of Doshisha University."}
+      ],
+      asideH:"Honours", aside:["MEXT Scholarship, Government of Japan　2025","Academic Merit Scholarship, CUPL　2021–2024","Merit Individual Certificate, NUS program　2021"],
+      next:"Experience →", nextId:"experience"
+    },
+    experience:{
+      kicker:"Section Two · Experience", title:"Working Experience",
+      items:[
+        {date:"MAR 2025 — JUL 2025", place:"Beijing, China", org:"People's Court Press", role:"Legal Intern — directly under the Supreme People's Court of the People's Republic of China", body:"Reviewed and edited legal and judicial manuscripts, ensuring accuracy, consistency, and compliance with publication standards."},
+        {date:"JAN 2024 — APR 2024", place:"Washington D.C., USA", org:"World Bank Group — IFC", role:"Data Analysis Intern, International Finance Corporation", body:"Conducted research and analytical work related to international finance and development initiatives. Contributed to regulatory and economic reporting within a multinational working environment with English as the primary business language."}
+      ],
+      capH:"What this adds up to",
+      cap:[["Legal work",["Legal documentation review","Policy and regulatory research","International law · law of the sea"]],["Analytical work",["Quantitative methods, RStudio","Data cleaning and exploration","Regulatory and economic reporting"]]],
+      asideH:"Interests", asideText:"Sea-level rise under climate change and its effect on the baseline provisions of UNCLOS.",
+      langH:"Languages", langs:["Chinese 中文 — Native","English 英文 — Professional","Japanese 日本語 — Elementary"],
+      next:"Projects →", nextId:"projects"
+    },
+    projects:{
+      kicker:"Section Three · Projects", title:"Academic Projects",
+      items:[
+        {date:"APR 2022 — APR 2023", place:"Beijing, China", org:"National Student Innovation and Entrepreneurship Project", role:"Co-developer — legal-tech platform for digital content creators", list:["Co-developed a legal-tech platform providing online legal support services for digital content creators.","Conducted market and regulatory research related to digital content compliance and platform operations.","Participated in platform strategy design and legal service workflow planning."]},
+        {date:"JAN 2021 — FEB 2021", place:"Singapore", org:"Data Analysis and Mathematical Statistics Program", role:"National University of Singapore — Merit Individual Certificate of Completion", list:["Utilized quantitative methods and RStudio to clean and explore complex datasets, ensuring data integrity for model training.","Applied data labeling and categorization techniques directly transferable to training legal AI models with contract and regulatory information."]},
+        {date:"IN PROGRESS", place:"Tokyo, Japan", org:"Law of the Sea Research Writing", role:"Master's research, Waseda University", body:"On how sea-level rise driven by climate change bears on the baseline provisions of the United Nations Convention on the Law of the Sea (UNCLOS). Papers will be listed here as they are completed."}
+      ],
+      asideH:"Methods", aside:["Quantitative methods, RStudio","Data labeling and categorization","Market and regulatory research","Legal service workflow design"],
+      cta:""
+    },
+    footer:["Tokyo · Beijing","bellachenj714@gmail.com"]
+  },
+
+  zh: {
+    dir: {profile:"简介", education:"学历", experience:"实践经历", projects:"项目"},
+    name:"姜雨辰", alt:"Yuchen Jiang", kicker:"个人档案", langLabel:"语言",
+    meta:["早稻田大学 · 国际法（海洋法）硕士在读","bellachenj714@gmail.com"],
+    back:"← 姜雨辰",
+    profile:{
+      h:"简介", lead:"法律、信息管理与国际研究的交叉训练。",
+      paras:[
+        "早稻田大学硕士在读，具备法律、信息管理与国际研究的交叉训练背景。曾在中华人民共和国最高人民法院下属人民法院出版社、世界银行集团国际金融公司（IFC）实习，从事法律文书审校、政策研究与分析工作。",
+        "研究方向：气候变化影响下海平面上升对《联合国海洋法公约》（UNCLOS）基线规定的变动影响。"
+      ],
+      langH:"语言技能",
+      langs:[["中文","母语——简体精通，繁体书面流利"],["英文","专业级——在 IFC 期间为主要工作语言"],["日语","初级——现于东京学习"]],
+      skillsH:"技能", skills:["法律文书审校","政策与监管研究","国际法 · 海洋法","RStudio 数据分析","数据标注与分类"],
+      nowH:"近况", now:"在东京修读海洋法方向的硕士课程，同时撰写气候变化下海平面上升对 UNCLOS 基线规定影响的研究。",
+      contactH:"联系方式", contact:["bellachenj714@gmail.com","+81 080 6173 6918","+86 185 1968 5700"], cta:"",
+      cards:[
+        ["01 · 学历","早稻田 · 中国政法 · 同志社","学位、交换与奖学金，2020 年至今。","education"],
+        ["02 · 实践经历","最高人民法院 · IFC","北京的法律审校，华盛顿的分析工作。","experience"],
+        ["03 · 项目","法律科技平台 · NUS 项目","学术项目与国家级创新创业项目。","projects"]
+      ]
+    },
+    education:{
+      kicker:"第一部分 · 学历", title:"学历背景",
+      items:[
+        {date:"2025.09 — 至今", place:"日本 东京", org:"早稻田大学", role:"硕士，国际文化与传播研究科（GSICCS）", body:"专攻国际法（海洋法）与国际关系。因学业优异获日本政府（MEXT）奖学金。"},
+        {date:"2020.09 — 2025.07", place:"中国 北京", org:"中国政法大学", role:"学士，双学位：信息管理与信息系统／法学", body:"连续四年获学业奖学金。以法律推理结合数据管理能力，支持数字化转型与法律科技实践。"},
+        {date:"2023.03 — 2023.08", place:"日本 京都", org:"同志社大学", role:"法学交换生", body:"获同志社大学渕川和彦教授学术推荐。"}
+      ],
+      asideH:"奖励", aside:["日本政府 MEXT 奖学金　2025","中国政法大学学业奖学金　2021–2024","新加坡国立大学项目个人优秀证书　2021"],
+      next:"实践经历 →", nextId:"experience"
+    },
+    experience:{
+      kicker:"第二部分 · 实践经历", title:"实践经历",
+      items:[
+        {date:"2025.03 — 2025.07", place:"中国 北京", org:"人民法院出版社", role:"法律实习生——最高人民法院直属单位", body:"审校法律与司法类稿件，确保内容准确、表述一致并符合出版规范。"},
+        {date:"2024.01 — 2024.04", place:"美国 华盛顿", org:"世界银行集团 · 国际金融公司（IFC）", role:"数据分析实习生", body:"围绕国际金融与发展议题开展研究与分析，参与监管与经济报告撰写；工作环境为跨国团队，英文为主要业务语言。"}
+      ],
+      capH:"能力归纳",
+      cap:[["法律",["法律文书审校","政策与监管研究","国际法 · 海洋法"]],["分析",["定量方法与 RStudio","数据清洗与探索","监管与经济报告"]]],
+      asideH:"关注方向", asideText:"气候变化下的海平面上升及其对 UNCLOS 基线规定的影响。",
+      langH:"语言", langs:["中文 — 母语","英文 — 专业级","日语 — 初级"],
+      next:"项目 →", nextId:"projects"
+    },
+    projects:{
+      kicker:"第三部分 · 项目", title:"学术与项目经历",
+      items:[
+        {date:"2022.04 — 2023.04", place:"中国 北京", org:"国家级大学生创新创业项目", role:"联合开发者——面向数字内容创作者的法律科技平台", list:["联合开发法律科技平台，为数字内容创作者提供在线法律支持服务。","围绕数字内容合规与平台运营开展市场与监管研究。","参与平台策略设计与法律服务流程规划。"]},
+        {date:"2021.01 — 2021.02", place:"新加坡", org:"数据分析与数理统计项目", role:"新加坡国立大学——个人优秀结业证书", list:["运用定量方法与 RStudio 清洗、探索复杂数据集，保证模型训练所需的数据完整性。","所用数据标注与分类方法可直接迁移至以合同与监管信息训练法律 AI 模型。"]},
+        {date:"进行中", place:"日本 东京", org:"海洋法研究写作", role:"早稻田大学硕士研究", body:"研究气候变化影响下海平面上升对《联合国海洋法公约》（UNCLOS）基线规定的变动影响；成稿后将在此列出。"}
+      ],
+      asideH:"方法", aside:["定量方法与 RStudio","数据标注与分类","市场与监管研究","法律服务流程设计"],
+      cta:""
+    },
+    footer:["东京 · 北京","bellachenj714@gmail.com"]
+  },
+
+  ja: {
+    dir: {profile:"プロフィール", education:"学歴", experience:"職務経験", projects:"プロジェクト"},
+    name:"JIANG YUCHEN", alt:"ジャン ユーチェン", kicker:"パーソナルレコード", langLabel:"言語",
+    meta:["早稲田大学大学院 · 国際法（海洋法）修士課程","bellachenj714@gmail.com"],
+    back:"← 姜 雨辰",
+    profile:{
+      h:"プロフィール", lead:"法学・情報マネジメント・国際研究を横断する学際的な訓練。",
+      paras:[
+        "早稲田大学大学院の修士課程に在籍し、法学・情報マネジメント・国際研究を横断する訓練を受けています。中華人民共和国最高人民法院の人民法院出版社、および世界銀行グループ国際金融公社（IFC）でのインターンシップを通じて、法律文書の校閲、政策研究、分析業務に従事しました。",
+        "研究テーマ：気候変動による海面上昇が国連海洋法条約（UNCLOS）の基線規定に及ぼす影響。"
+      ],
+      langH:"語学力",
+      langs:[["中国語","母語——簡体字に精通、繁体字の読み書きも流暢"],["英語","ビジネスレベル——IFC では主要業務言語"],["日本語","初級——東京で学習中"]],
+      skillsH:"スキル", skills:["法律文書の校閲","政策・規制リサーチ","国際法 · 海洋法","RStudio によるデータ分析","データラベリングと分類"],
+      nowH:"現在", now:"東京で海洋法を専攻する修士課程に在籍し、気候変動による海面上昇が UNCLOS の基線規定に及ぼす影響について執筆しています。",
+      contactH:"連絡先", contact:["bellachenj714@gmail.com","+81 080 6173 6918","+86 185 1968 5700"], cta:"",
+      cards:[
+        ["01 · 学歴","早稲田 · 中国政法 · 同志社","学位、交換留学、奨学金（2020年〜現在）。","education"],
+        ["02 · 職務経験","最高人民法院 · IFC","北京での法律校閲、ワシントンでの分析業務。","experience"],
+        ["03 · プロジェクト","リーガルテック · NUS プログラム","学術プログラムと国家級の創新創業プロジェクト。","projects"]
+      ]
+    },
+    education:{
+      kicker:"第一部 · 学歴", title:"学歴",
+      items:[
+        {date:"2025年9月 — 現在", place:"日本 東京", org:"早稲田大学大学院", role:"修士課程、国際コミュニケーション研究科（GSICCS）", body:"国際法（海洋法）および国際関係を専攻。学業優秀により日本政府（文部科学省）奨学金を受給。"},
+        {date:"2020年9月 — 2025年7月", place:"中国 北京", org:"中国政法大学", role:"学士、ダブルディグリー：情報管理・情報システム／法学", body:"4年連続で学業奨励奨学金を受給。法的推論とデータマネジメントの知見を結び付け、デジタル変革とリーガルテックの実践に取り組みました。"},
+        {date:"2023年3月 — 2023年8月", place:"日本 京都", org:"同志社大学", role:"法学部 交換留学生", body:"同志社大学の渕川和彦教授より学術推薦を受けました。"}
+      ],
+      asideH:"受賞・奨学金", aside:["日本政府（文部科学省）奨学金　2025","中国政法大学 学業奨励奨学金　2021–2024","NUS プログラム 個人優秀修了証　2021"],
+      next:"職務経験 →", nextId:"experience"
+    },
+    experience:{
+      kicker:"第二部 · 職務経験", title:"職務経験",
+      items:[
+        {date:"2025年3月 — 2025年7月", place:"中国 北京", org:"人民法院出版社", role:"法務インターン——中華人民共和国最高人民法院の直属機関", body:"法律・司法関連の原稿を校閲し、正確性・一貫性および出版基準への適合を確保しました。"},
+        {date:"2024年1月 — 2024年4月", place:"米国 ワシントンD.C.", org:"世界銀行グループ — IFC", role:"データ分析インターン（国際金融公社）", body:"国際金融と開発に関する調査・分析を担当し、規制および経済レポートの作成に貢献しました。英語を主要業務言語とする多国籍環境での業務です。"}
+      ],
+      capH:"できること",
+      cap:[["法務",["法律文書の校閲","政策・規制リサーチ","国際法 · 海洋法"]],["分析",["定量的手法、RStudio","データクリーニングと探索","規制・経済レポート"]]],
+      asideH:"関心領域", asideText:"気候変動下の海面上昇と、UNCLOS の基線規定への影響。",
+      langH:"語学", langs:["中国語 — 母語","英語 — ビジネスレベル","日本語 — 初級"],
+      next:"プロジェクト →", nextId:"projects"
+    },
+    projects:{
+      kicker:"第三部 · プロジェクト", title:"学術・プロジェクト経験",
+      items:[
+        {date:"2022年4月 — 2023年4月", place:"中国 北京", org:"国家級 大学生創新創業プロジェクト", role:"共同開発者——デジタルコンテンツ制作者向けリーガルテック基盤", list:["デジタルコンテンツ制作者にオンライン法務支援を提供するリーガルテック基盤を共同開発。","デジタルコンテンツのコンプライアンスとプラットフォーム運営に関する市場・規制調査を実施。","プラットフォーム戦略の設計と法務サービスのワークフロー設計に参画。"]},
+        {date:"2021年1月 — 2021年2月", place:"シンガポール", org:"データ分析・数理統計プログラム", role:"シンガポール国立大学 — 個人優秀修了証", list:["定量的手法と RStudio を用いて複雑なデータセットを整備・探索し、モデル学習に必要なデータ品質を確保。","契約・規制情報でリーガル AI を学習させる際に応用できるデータラベリングと分類の手法を実践。"]},
+        {date:"進行中", place:"日本 東京", org:"海洋法に関する研究執筆", role:"早稲田大学大学院での研究", body:"気候変動による海面上昇が国連海洋法条約（UNCLOS）の基線規定にどのように関わるかを扱っています。完成した論文は本欄に掲載します。"}
+      ],
+      asideH:"手法", aside:["定量的手法、RStudio","データラベリングと分類","市場・規制リサーチ","法務サービスのワークフロー設計"],
+      cta:""
+    },
+    footer:["東京 · 北京","bellachenj714@gmail.com"]
+  }
+};
+
+
+var LANGS = ["zh","en","ja"], LANGLABEL = {zh:"中文", en:"English", ja:"日本語"};
+var IDS = ["profile","education","experience","projects"];
+var CUR_LANG = 'en', CUR_PAGE = 'profile';
+
+function nav(t, cur){
+  var links = IDS.map(function(id){
+    var on = id === cur;
+    return '<a href="#' + id + '" style="font-size:16px;letter-spacing:0.1em;padding:6px 2px;border-bottom:2px solid ' + (on ? 'var(--color-accent)' : 'transparent') + (on ? ';color:var(--color-accent-700)' : ';color:var(--color-text)') + '">' + t.dir[id] + '</a>';
+  }).join('');
+  var picker = LANGS.map(function(l){
+    var on = l === CUR_LANG;
+    return '<a href="#" data-setlang="' + l + '" style="font-family:var(--font-heading);font-size:14px;letter-spacing:0.08em;padding:5px 14px;border:1px solid ' + (on ? 'var(--color-accent)' : 'var(--color-divider)') + ';border-radius:var(--radius-sm)' + (on ? ';color:var(--color-accent-700);background:rgba(255,255,255,0.45)' : ';color:var(--color-neutral-600)') + '">' + LANGLABEL[l] + '</a>';
+  }).join('');
+  return '<div style="max-width:1180px;margin:0 auto;border-top:1px solid var(--color-accent);border-bottom:1px solid var(--color-accent);display:flex;justify-content:space-between;align-items:center;gap:var(--space-6);padding:var(--space-3) 0;font-family:var(--font-heading);background:rgba(255,255,255,0.18)">' +
+    '<div style="display:flex;gap:var(--space-6);padding-left:var(--space-2)">' + links + '</div>' +
+    '<div style="display:flex;align-items:center;gap:var(--space-3);padding-right:var(--space-2)">' +
+      '<span style="font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-accent-700)">' + (t.langLabel || 'Language') + '</span>' +
+      '<div style="display:flex;gap:var(--space-2)">' + picker + '</div></div></div>';
+}
+function head(t, big, kicker, alt, right){
+  return '<div style="max-width:1180px;margin:0 auto;border-top:2px solid var(--color-text);padding:var(--space-4) 0 var(--space-3);display:flex;justify-content:space-between;align-items:flex-end;gap:var(--space-6)">' +
+    '<div>' + (kicker ? '<div style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--color-accent-700)">' + kicker + '</div>' : '') +
+    '<h1 style="font-size:' + (big === true ? '64px' : '52px') + ';font-weight:600;letter-spacing:0.01em;margin:var(--space-2) 0 0">' + (big === true ? t.name : big) + '</h1>' +
+    (alt ? '<div style="font-family:var(--font-heading);font-size:22px;color:var(--color-neutral-700);letter-spacing:0.08em">' + alt + '</div>' : '') + '</div>' +
+    '<div style="text-align:right;font-size:12px;line-height:1.9;color:var(--color-neutral-700);font-variant-numeric:tabular-nums">' + right + '</div></div>';
+}
+function foot(t){
+  return '<div style="max-width:1180px;margin:var(--space-8) auto 0;border-top:1px solid var(--color-divider);padding:var(--space-4) 0;display:flex;justify-content:space-between;font-size:12px;color:var(--color-neutral-700);font-variant-numeric:tabular-nums">' + (t.footer[0] ? '<span>' + t.footer[0] + '</span>' : '') + '<span>' + t.footer[1] + '</span></div>';
+}
+function h6(x){ return '<h6 style="color:var(--color-accent-700)">' + x + '</h6>'; }
+
+function renderProfile(t){
+  var p = t.profile;
+  var langs = p.langs.map(function(l){
+    return '<div style="padding:var(--space-3) 0;border-bottom:1px solid var(--color-divider)"><div style="font-family:var(--font-heading);font-size:20px">' + l[0] + '</div><div class="text-muted" style="font-size:13px;margin-top:2px">' + l[1] + '</div></div>';
+  }).join('');
+  var cards = p.cards.map(function(c){
+    return '<a class="card" href="#' + c[3] + '" style="border:1px solid var(--color-divider);border-radius:var(--radius-md);padding:var(--space-6);color:var(--color-text);display:block">' +
+      '<div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-accent-700);font-variant-numeric:tabular-nums">' + c[0] + '</div>' +
+      '<h4 style="margin:var(--space-2) 0;font-weight:600">' + c[1] + '</h4>' +
+      '<p class="text-muted" style="margin:0;font-size:14px">' + c[2] + '</p></a>';
+  }).join('');
+  return head(t, true, t.kicker, t.alt, t.meta.map(function(m){return '<div>' + m + '</div>';}).join('')) +
+    nav(t, 'profile') +
+    '<div style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;padding-top:var(--space-6)">' +
+      '<section style="padding-right:var(--space-6);border-right:1px solid var(--color-divider)">' + h6(p.h) +
+        '<p style="font-family:var(--font-heading);font-size:27px;line-height:1.45;margin-bottom:var(--space-4);text-wrap:pretty">' + p.lead + '</p>' +
+        '<div style="text-align:justify;line-height:1.85;font-size:15px;hyphens:auto">' + p.paras.map(function(x){return '<p>' + x + '</p>';}).join('') + '</div></section>' +
+      '<section style="padding:0 var(--space-6);border-right:1px solid var(--color-divider)">' + h6(p.langH) + langs +
+        '<h6 style="color:var(--color-accent-700);margin-top:var(--space-6)">' + p.skillsH + '</h6>' +
+        '<div class="text-muted" style="font-size:14px;line-height:2.1">' + p.skills.join('<br>') + '</div></section>' +
+      '<section style="padding-left:var(--space-6)">' + h6(p.nowH) +
+        '<p style="font-size:15px;line-height:1.85;text-align:justify">' + p.now + '</p><div class="hr"></div>' + h6(p.contactH) +
+        '<div style="font-size:13px;line-height:2;color:var(--color-neutral-700);font-variant-numeric:tabular-nums">' + p.contact.map(function(c){return '<div>' + c + '</div>';}).join('') + '</div>' +
+        (p.cta ? '<a class="btn btn-primary btn-block" href="mailto:bellachenj714@gmail.com">' + p.cta + '</a>' : '') + '</section></div>' +
+    '<div style="max-width:1180px;margin:var(--space-8) auto 0;border-top:1px solid var(--color-divider);padding-top:var(--space-6);display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-6)">' + cards + '</div>' +
+    foot(t);
+}
+
+function entry(it){
+  var body = it.list
+    ? '<ul style="margin:0;padding-left:1.1em;line-height:1.9;text-align:justify">' + it.list.map(function(x){return '<li>' + x + '</li>';}).join('') + '</ul>'
+    : '<p style="text-align:justify;margin:0">' + it.body + '</p>';
+  return '<article style="display:grid;grid-template-columns:200px 1fr;gap:var(--space-6);padding:var(--space-6) 0;border-bottom:1px solid var(--color-divider)">' +
+    '<div><div style="font-size:12px;letter-spacing:0.1em;color:var(--color-accent-700);font-variant-numeric:tabular-nums">' + it.date + '</div>' +
+    '<div class="text-muted" style="font-size:13px;margin-top:var(--space-1)">' + it.place + '</div></div>' +
+    '<div><h3 style="margin:0;font-weight:600">' + it.org + '</h3>' +
+    '<div style="font-family:var(--font-heading);font-size:17px;color:var(--color-neutral-700);margin-bottom:var(--space-3)">' + it.role + '</div>' + body + '</div></article>';
+}
+
+function renderSection(t, key){
+  var s = t[key];
+  var aside = h6(s.asideH) + (s.aside
+      ? '<div class="text-muted" style="font-size:14px;line-height:1.9">' + s.aside.map(function(x, i){
+          return '<div style="padding:var(--space-3) 0' + (i === s.aside.length - 1 ? '' : ';border-bottom:1px solid var(--color-divider)') + '">' + x + '</div>';
+        }).join('') + '</div>'
+      : '<p class="text-muted" style="font-size:14px;line-height:1.9;text-align:justify">' + s.asideText + '</p>') +
+    (s.langs ? '<h6 style="color:var(--color-accent-700);margin-top:var(--space-8)">' + s.langH + '</h6>' +
+      '<div class="text-muted" style="font-size:14px;line-height:1.9">' + s.langs.join('<br>') + '</div>' : '') +
+    (s.next ? '<a class="btn btn-secondary btn-block" href="#' + s.nextId + '" style="margin-top:var(--space-6)">' + s.next + '</a>'
+            : (s.cta ? '<a class="btn btn-primary btn-block" href="mailto:bellachenj714@gmail.com" style="margin-top:var(--space-6)">' + s.cta + '</a>' : ''));
+  var cap = s.cap ? '<div style="padding-top:var(--space-6)">' + h6(s.capH) +
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6)">' + s.cap.map(function(c){
+        return '<div><div style="font-family:var(--font-heading);font-size:18px;padding-bottom:var(--space-2);border-bottom:1px solid var(--color-divider)">' + c[0] + '</div>' +
+          '<div class="text-muted" style="font-size:14px;line-height:2;margin-top:var(--space-2)">' + c[1].join('<br>') + '</div></div>';
+      }).join('') + '</div></div>' : '';
+  return head(t, s.title, s.kicker, '', '<a href="#profile">' + t.back + '</a>') +
+    nav(t, key) +
+    '<div style="max-width:1180px;margin:0 auto;padding-top:var(--space-8);display:grid;grid-template-columns:1fr 300px;gap:var(--space-8)">' +
+      '<div>' + s.items.map(entry).join('') + cap + '</div>' +
+      '<aside style="border-left:1px solid var(--color-divider);padding-left:var(--space-6)">' + aside + '</aside></div>' +
+    foot(t);
+}
+
+function render(replay){
+  var t = DATA[CUR_LANG];
+  document.documentElement.lang = CUR_LANG;
+  var inner = CUR_PAGE === 'profile' ? renderProfile(t) : renderSection(t, CUR_PAGE);
+  document.getElementById('app').innerHTML = '<div class="page" style="padding:var(--space-6)">' + inner + '</div>';
+  window.scrollTo(0, 0);
+  if (replay && document.body.classList.contains('entered')) {
+    document.body.classList.remove('intro');
+    void document.body.offsetWidth;
+    document.body.classList.add('intro');
+    clearTimeout(window.__introT);
+    window.__introT = setTimeout(function(){ document.body.classList.remove('intro'); }, 1150);
+  }
+}
+
+(function(){
+  if (window.__resources && window.__resources.waterImg) {
+    var w = window.__resources.waterImg, l = window.__resources.lilyImg || w;
+    var st = document.createElement('style');
+    st.textContent = "body{background-image:url('" + l + "') !important}body.entered{background-image:url('" + l + "') !important}";
+    document.head.appendChild(st);
+  }
+  var stored = null;
+  try { stored = localStorage.getItem('yj-lang'); } catch (e) {}
+  if (stored && DATA[stored]) CUR_LANG = stored;
+
+  var splash = document.getElementById('splash');
+  function enter(){
+    render();
+    if (splash && !splash.classList.contains('leaving')) {
+      splash.classList.add('leaving');
+      document.body.classList.add('entered');
+      document.body.classList.add('intro');
+      setTimeout(function(){ if (splash && splash.parentNode) splash.parentNode.removeChild(splash); }, 600);
+      setTimeout(function(){ document.body.classList.remove('intro'); }, 1150);
+    }
+  }
+  document.getElementById('enterBtn').addEventListener('click', enter);
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('[data-setlang]');
+    if (!a) return;
+    e.preventDefault();
+    CUR_LANG = a.getAttribute('data-setlang');
+    try { localStorage.setItem('yj-lang', CUR_LANG); } catch (e2) {}
+    render(true);
+  });
+
+  function fromHash(){
+    var id = location.hash.slice(1);
+    CUR_PAGE = IDS.indexOf(id) >= 0 ? id : 'profile';
+  }
+  window.addEventListener('hashchange', function(){ fromHash(); render(true); });
+  fromHash();
+  render();
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (location.hash || reduce) enter();
+})();
+
+</script>
+</body>
+</html>

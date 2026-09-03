@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="ds/styles.css">
+<style>
+  body { margin: 0; }
+  a { text-decoration: none; }
+  a:hover { color: var(--color-accent-600); }
+</style>
+</helmet>
+<div style="min-height:100%;background:var(--color-bg);padding:var(--space-6)">
+
+  <div style="max-width:1180px;margin:0 auto;border-top:2px solid var(--color-text);padding:var(--space-4) 0 var(--space-3);display:flex;justify-content:space-between;align-items:flex-end;gap:var(--space-6)">
+    <div>
+      <div style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:var(--color-accent-700)">Section One · Education</div>
+      <h1 style="font-size:52px;font-weight:600;letter-spacing:0.01em;margin:var(--space-2) 0 0">Education Background</h1>
+      <div style="font-family:var(--font-heading);font-size:20px;color:var(--color-neutral-700);letter-spacing:0.08em">学历背景</div>
+    </div>
+    <a href="index.dc.html" style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;font-family:var(--font-heading)">← Yuchen Jiang</a>
+  </div>
+
+  <div style="max-width:1180px;margin:0 auto;border-top:1px solid var(--color-divider);border-bottom:1px solid var(--color-divider);display:flex;gap:var(--space-6);padding:var(--space-2) 0;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;font-family:var(--font-heading)">
+    <a href="index.dc.html">Profile</a>
+    <a href="education.dc.html" style="color:var(--color-accent-700);border-bottom:1px solid var(--color-accent)">Education</a>
+    <a href="experience.dc.html">Experience</a>
+    <a href="projects.dc.html">Projects</a>
+  </div>
+
+  <div style="max-width:1180px;margin:0 auto;padding-top:var(--space-8);display:grid;grid-template-columns:1fr 300px;gap:var(--space-8)">
+
+    <div>
+      <article style="display:grid;grid-template-columns:200px 1fr;gap:var(--space-6);padding-bottom:var(--space-6);border-bottom:1px solid var(--color-divider)">
+        <div>
+          <div style="font-size:12px;letter-spacing:0.1em;color:var(--color-accent-700);font-variant-numeric:tabular-nums">SEP 2025 — PRESENT</div>
+          <div class="text-muted" style="font-size:13px;margin-top:var(--space-1)">Tokyo, Japan</div>
+        </div>
+        <div>
+          <h3 style="margin:0;font-weight:600">Waseda University</h3>
+          <div style="font-family:var(--font-heading);font-size:17px;color:var(--color-neutral-700);margin-bottom:var(--space-3)">Master, Graduate School of International Culture and Communication Studies (GSICCS)</div>
+          <p style="text-align:justify;margin-bottom:var(--space-2)">Specialized in international law (law of the sea) and international relations. Awarded the Japanese Government (MEXT) Scholarship for academic excellence.</p>
+          <p class="text-muted" style="font-size:13.5px;margin:0">早稻田大学国际文化与传播研究科硕士。专攻国际法（海洋法）与国际关系，获日本政府（MEXT）奖学金。</p>
+        </div>
+      </article>
+
+      <article style="display:grid;grid-template-columns:200px 1fr;gap:var(--space-6);padding:var(--space-6) 0;border-bottom:1px solid var(--color-divider)">
+        <div>
+          <div style="font-size:12px;letter-spacing:0.1em;color:var(--color-accent-700);font-variant-numeric:tabular-nums">SEP 2020 — JUL 2025</div>
+          <div class="text-muted" style="font-size:13px;margin-top:var(--space-1)">Beijing, China</div>
+        </div>
+        <div>
+          <h3 style="margin:0;font-weight:600">China University of Political Science and Law</h3>
+          <div style="font-family:var(--font-heading);font-size:17px;color:var(--color-neutral-700);margin-bottom:var(--space-3)">Bachelor, double degree: Information Management and Information System &amp; Law</div>
+          <p style="text-align:justify;margin-bottom:var(--space-2)">Recipient of the Academic Merit Scholarship for four consecutive years. Bridging legal reasoning with data management expertise to support digital transformation and legal-tech initiatives.</p>
+          <p class="text-muted" style="font-size:13.5px;margin:0">中国政法大学，信息管理与信息系统／法学双学位。连续四年获学业奖学金。</p>
+        </div>
+      </article>
+
+      <article style="display:grid;grid-template-columns:200px 1fr;gap:var(--space-6);padding:var(--space-6) 0">
+        <div>
+          <div style="font-size:12px;letter-spacing:0.1em;color:var(--color-accent-700);font-variant-numeric:tabular-nums">MAR 2023 — AUG 2023</div>
+          <div class="text-muted" style="font-size:13px;margin-top:var(--space-1)">Kyoto, Japan</div>
+        </div>
+        <div>
+          <h3 style="margin:0;font-weight:600">Doshisha University</h3>
+          <div style="font-family:var(--font-heading);font-size:17px;color:var(--color-neutral-700);margin-bottom:var(--space-3)">Exchange student, Law</div>
+          <p style="text-align:justify;margin-bottom:var(--space-2)">Received an academic recommendation from Professor Kazuhiko Fuchikawa of Doshisha University.</p>
+          <p class="text-muted" style="font-size:13.5px;margin:0">同志社大学法学交换生，获渕川和彦教授学术推荐。</p>
+        </div>
+      </article>
+    </div>
+
+    <aside style="border-left:1px solid var(--color-divider);padding-left:var(--space-6)">
+      <h6 style="color:var(--color-accent-700)">Honours · 奖励</h6>
+      <div class="text-muted" style="font-size:14px;line-height:1.9">
+        <div style="padding-bottom:var(--space-3);border-bottom:1px solid var(--color-divider)">MEXT Scholarship, Government of Japan　2025</div>
+        <div style="padding:var(--space-3) 0;border-bottom:1px solid var(--color-divider)">Academic Merit Scholarship, CUPL　2021–2024</div>
+        <div style="padding-top:var(--space-3)">Merit Individual Certificate, NUS program　2021</div>
+      </div>
+      <h6 style="color:var(--color-accent-700);margin-top:var(--space-8)">Languages · 语言</h6>
+      <div class="text-muted" style="font-size:14px;line-height:1.9">Chinese — Native<br>English — Professional<br>Japanese — JLPT N2</div>
+      <a class="btn btn-secondary btn-block" href="experience.dc.html" style="margin-top:var(--space-6)">Experience →</a>
+    </aside>
+  </div>
+
+  <div style="max-width:1180px;margin:var(--space-8) auto 0;border-top:1px solid var(--color-divider);padding:var(--space-4) 0;display:flex;justify-content:space-between;font-size:12px;color:var(--color-neutral-600);font-variant-numeric:tabular-nums">
+    <span>Tokyo · Beijing</span>
+    <span>bellachenj714@gmail.com</span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;ground&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Water 水光&quot;,&quot;Qinghua 青花&quot;,&quot;Paper 纸白&quot;,&quot;Cream 米黄&quot;,&quot;Sea 海青&quot;,&quot;Ink 墨黑&quot;],&quot;default&quot;:&quot;Water 水光&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Colour&quot;},&quot;colorWash&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Colour&quot;},&quot;veil&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:75,&quot;min&quot;:60,&quot;max&quot;:95,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Colour&quot;}}">
+const GROUNDS = {
+  "Paper 纸白": { bg:"#f3f2f2", surface:"#eae9e9", text:"#201f1d", accent:"#b68235", accent7:"#7d5411", n6:"#7d7979", n7:"#605d5d", divider:"rgba(32,31,29,0.16)",
+    wash:"radial-gradient(120% 80% at 12% 0%, rgba(182,130,53,0.14), transparent 60%), radial-gradient(90% 70% at 100% 10%, rgba(120,130,150,0.14), transparent 65%)" },
+  "Cream 米黄": { bg:"#f7f2e8", surface:"#efe7d7", text:"#231f18", accent:"#a06f24", accent7:"#6d4710", n6:"#807868", n7:"#635c4e", divider:"rgba(35,31,24,0.18)",
+    wash:"radial-gradient(120% 85% at 0% 0%, rgba(214,160,74,0.22), transparent 62%), radial-gradient(100% 75% at 100% 20%, rgba(168,142,110,0.18), transparent 68%)" },
+  "Sea 海青": { bg:"#eaf0ef", surface:"#dbe5e3", text:"#1a2220", accent:"#a06f24", accent7:"#6d4710", n6:"#71807d", n7:"#586563", divider:"rgba(26,34,32,0.16)",
+    wash:"radial-gradient(120% 85% at 5% 0%, rgba(96,148,142,0.22), transparent 62%), radial-gradient(95% 70% at 100% 15%, rgba(182,130,53,0.16), transparent 66%)" },
+  "Water 水光": { bg:"transparent", surface:"#dcecee", text:"#0a2429", accent:"#0b4d57", accent7:"#083a43", n6:"#2b4b51", n7:"#1f4046", divider:"rgba(10,36,41,0.28)",
+    wash:"none",
+    extra:"body{background-image:url('assets/water.jpg');background-size:cover;background-position:center;background-attachment:fixed;}" +
+      "@keyframes om-veil{from{opacity:0;}to{opacity:1;}}" +
+      "body::before{background:linear-gradient(180deg, rgba(233,245,246,0.82), rgba(228,243,245,0.9)) !important;animation:om-veil 900ms cubic-bezier(.22,.61,.36,1) 300ms both;}" +
+      ".card{background:rgba(255,255,255,0.5);backdrop-filter:blur(8px);border-color:rgba(13,95,107,0.28);}" +
+      "h1,h2,h3,h4,h6{color:#0a454e;}" +
+      "body>*{background:transparent !important;}" +
+      "@keyframes om-frost{from{background-color:rgba(255,255,255,0) !important;backdrop-filter:blur(0px);}to{background-color:rgba(255,255,255,0.34) !important;backdrop-filter:blur(3px);}}" +
+      "@keyframes om-rise{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}" +
+      "#dc-root>.sc-host>div{background:rgba(255,255,255,0.34) !important;backdrop-filter:blur(3px);animation:om-frost 900ms cubic-bezier(.22,.61,.36,1) 500ms both;}" +
+      "#dc-root>.sc-host>div>*{animation:om-rise 650ms cubic-bezier(.22,.61,.36,1) both;}" +
+      "#dc-root>.sc-host>div>*:nth-child(1){animation-delay:800ms;}" +
+      "#dc-root>.sc-host>div>*:nth-child(2){animation-delay:890ms;}" +
+      "#dc-root>.sc-host>div>*:nth-child(3){animation-delay:980ms;}" +
+      "#dc-root>.sc-host>div>*:nth-child(4){animation-delay:1070ms;}" +
+      "#dc-root>.sc-host>div>*:nth-child(5){animation-delay:1160ms;}" +
+      "@media (prefers-reduced-motion:reduce){#dc-root>.sc-host>div,#dc-root>.sc-host>div>*{animation:none !important;}}" +
+      ".text-muted{color:rgba(10,36,41,0.82) !important;}" +
+      "body{text-shadow:0 1px 0 rgba(255,255,255,0.5);}" +
+      "h1,h2,h3,h4,h6{text-shadow:0 1px 2px rgba(255,255,255,0.6);}", veilable:true },
+  "Qinghua 青花": { bg:"#eef3f6", surface:"#e2ebf1", text:"#1b2733", accent:"#2f5c96", accent7:"#1d3f6e", n6:"#6f8298", n7:"#4f6478", divider:"rgba(27,39,51,0.16)",
+    wash:"radial-gradient(90% 60% at 8% -5%, rgba(47,92,150,0.26), transparent 62%), radial-gradient(70% 55% at 92% 8%, rgba(95,150,190,0.22), transparent 66%), radial-gradient(80% 60% at 50% 105%, rgba(47,92,150,0.14), transparent 70%), linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0) 40%)",
+    extra:".card{background:rgba(255,255,255,0.42);backdrop-filter:blur(6px);border-color:rgba(47,92,150,0.28);}h1,h2,h3,h4,h6{color:#1d3f6e;}" },
+  "Ink 墨黑": { bg:"#1d1b19", surface:"#2a2724", text:"#ece7dd", accent:"#d9a85c", accent7:"#e1ad66", n6:"#a39c91", n7:"#c2bbb0", divider:"rgba(236,231,221,0.2)",
+    wash:"radial-gradient(120% 85% at 10% 0%, rgba(217,168,92,0.16), transparent 60%), radial-gradient(95% 70% at 100% 12%, rgba(90,110,130,0.22), transparent 66%)" }
+};
+
+class Component extends DCLogic {
+  apply() {
+    const name = this.props.ground ?? "Water 水光";
+    const g = GROUNDS[name] || GROUNDS["Paper 纸白"];
+    const wash = (this.props.colorWash ?? true) ? g.wash : "none";
+    let css = `:root{--color-bg:${g.bg};--color-surface:${g.surface};--color-text:${g.text};` +
+      `--color-accent:${g.accent};--color-accent-700:${g.accent7};--color-accent-600:${g.accent};` +
+      `--color-neutral-600:${g.n6};--color-neutral-700:${g.n7};--color-divider:${g.divider};}` +
+      `body{background:${g.bg};color:${g.text};}` +
+      `body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:${wash};background-attachment:fixed;}` +
+      `body>*{position:relative;z-index:1;}` + (g.extra || "");
+    if (g.veilable) {
+      const a = (this.props.veil ?? 85) / 100;
+      css = css.replace("rgba(233,245,246,0.82)", `rgba(233,245,246,${(a - 0.06).toFixed(2)})`)
+               .replace("rgba(228,243,245,0.9)", `rgba(228,243,245,${a.toFixed(2)})`);
+    }
+    let el = document.getElementById("om-ground-theme");
+    if (!el) { el = document.createElement("style"); el.id = "om-ground-theme"; document.head.appendChild(el); }
+    el.textContent = css;
+  }
+  componentDidMount() { this.apply(); }
+  componentDidUpdate() { this.apply(); }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
