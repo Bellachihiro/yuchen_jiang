@@ -264,13 +264,13 @@ textarea.input { min-height: 90px; resize: vertical; }
 </style>
 <style>
 :root{--frost:0.44;--color-bg:transparent;--color-surface:#dcecee;--color-text:#0a2429;--color-accent:#0b4d57;--color-accent-700:#083a43;--color-accent-600:#0b4d57;--color-neutral-600:#2b4b51;--color-neutral-700:#1f4046;--color-divider:rgba(10,36,41,0.28);}
-body{margin:0;background:transparent;color:#0a2429;font-weight:500;background-image:url('assets/lily.jpg');background-size:cover;background-position:center;background-attachment:fixed;text-shadow:0 1px 0 rgba(255,255,255,0.5);}
+body{margin:0;background:transparent;color:#0a2429;font-weight:500;background-image:url('lily.jpg');background-size:cover;background-position:center;background-attachment:fixed;text-shadow:0 1px 0 rgba(255,255,255,0.5);}
 @keyframes om-veil{from{opacity:0}to{opacity:1}}
 @keyframes om-frost{from{background-color:rgba(255,255,255,0);backdrop-filter:blur(0px)}to{background-color:rgba(255,255,255,var(--frost));backdrop-filter:blur(3px)}}
 @keyframes om-rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes om-splash-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:linear-gradient(180deg, rgba(233,245,246,0.22), rgba(228,243,245,0.28));opacity:0;}
-body.entered{background-image:url('assets/lily.jpg')}
+body.entered{background-image:url('lily.jpg')}
 body.entered::before{opacity:1}
 body.entered.intro::before{animation:om-veil 520ms cubic-bezier(.22,.61,.36,1) 160ms both;}
 .page{position:relative;z-index:1;background:rgba(255,255,255,var(--frost));backdrop-filter:blur(3px);}
